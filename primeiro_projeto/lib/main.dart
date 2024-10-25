@@ -5,6 +5,7 @@ import './respostas.dart';
 
 void main() {
   runApp(PerguntaApp());
+  print('oii');
 }
 
 class PerguntaApp extends StatefulWidget {
