@@ -7,6 +7,13 @@ void main() {
   runApp(PerguntaApp());
   print('oii');
   print('oii');
+  print('oii');
+  print('oii');
+  print('oii');
+  print('oii');
+  print('oii');
+  print('oii');
+  print('oii');
 }
 
 class PerguntaApp extends StatefulWidget {
