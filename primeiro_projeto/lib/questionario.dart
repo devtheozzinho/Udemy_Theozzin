@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import './questao.dart';
+import './respostas.dart';
 
 class Questionario extends StatelessWidget {
   final int perguntaSelecionada;
@@ -26,12 +27,10 @@ class Questionario extends StatelessWidget {
       children: [
         Questao(perguntaSelecionada.toString()),
         if (respostas != null)
-          ...respostas
-              .map((resposta) => ElevatedButton(
-                    onPressed: quantoResponder,
-                    child: Text(resposta),
-                  ))
-              .toList(),
+          ...respostas.map((resposta) => MeuBotao(
+                resposta,
+                quantoResponder,
+              )),
       ],
     );
   }
