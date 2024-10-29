@@ -5,15 +5,6 @@ import './respostas.dart';
 
 void main() {
   runApp(PerguntaApp());
-  print('oii');
-  print('oii');
-  print('oii');
-  print('oii');
-  print('oii');
-  print('oii');
-  print('oii');
-  print('oii');
-  print('oii');
 }
 
 class PerguntaApp extends StatefulWidget {
@@ -70,18 +61,31 @@ class _PerguntaAppState extends State<PerguntaApp> {
 
   @override
   Widget build(BuildContext context) {
-    final Map<String, Object> perguntaAtual =
-        temPerguntaSelecionada ? _perguntas[_perguntaSelecionada] : {};
+    final perguntaAtual =
+        temPerguntaSelecionada ? _perguntas[_perguntaSelecionada] : null;
 
     List<String>? respostas = temPerguntaSelecionada
-        ? (perguntaAtual['respostas'] as List<String>?)
+        ? (perguntaAtual!['respostas'] as List<Map<String, Object>>?)
+            ?.map((resp) => resp['texto'] as String)
+            .toList()
         : null;
 
-    List<Widget> widgets = [];
-    if (respostas != null) {
-      widgets = respostas.map((t) => MeuBotao(t, responder)).toList();
+    if (perguntaAtual == null) {
+      return MaterialApp(
+        home: Scaffold(
+          appBar: AppBar(
+            title: Text('Perguntas'),
+            titleTextStyle: TextStyle(),
+          ),
+          body: ResultadoFinal(), // Exibe o resultado
+        ),
+      );
     }
 
+    List<String> resposta =
+        (perguntaAtual['respostas'] as List<Map<String, Object>>)
+            .map((resp) => resp['texto'] as String)
+            .toList();
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
