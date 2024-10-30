@@ -5,7 +5,6 @@ import './respostas.dart';
 
 void main() {
   runApp(PerguntaApp());
-  print('oi');
 }
 
 class PerguntaApp extends StatefulWidget {
@@ -17,33 +16,34 @@ class PerguntaApp extends StatefulWidget {
 
 class _PerguntaAppState extends State<PerguntaApp> {
   var _perguntaSelecionada = 0;
+  var _pontuacaoTotal = 0;
 
   final _perguntas = const [
     {
       'texto': 'Qual é a sua cor favorita?',
       'respostas': [
-        {'texto': 'preto', 'nota': 10},
-        {'texto': 'vermelho', 'nota': 5},
-        {'texto': 'verde', 'nota': 3},
-        {'texto': 'branco', 'nota': 7}
+        {'texto': 'preto', 'pontuacão': 10},
+        {'texto': 'vermelho', 'pontuacão': 5},
+        {'texto': 'verde', 'pontuacão': 3},
+        {'texto': 'branco', 'pontuacão': 7}
       ],
     },
     {
       'texto': 'Qual é o seu animal favorito?',
       'respostas': [
-        {'texto': 'coelho', 'nota': 10},
-        {'texto': 'leão', 'nota': 7},
-        {'texto': 'tubarão', 'nota': 2},
-        {'texto': 'macaco', 'nota': 4},
+        {'texto': 'coelho', 'pontuacão': 10},
+        {'texto': 'leão', 'pontuacão': 7},
+        {'texto': 'tubarão', 'pontuacão': 2},
+        {'texto': 'macaco', 'pontuacão': 4},
       ],
     },
     {
       'texto': 'Qual vai ser o seu instrutor favorito?',
       'respostas': [
-        {'texto': 'Maria', 'nota': 9},
-        {'texto': 'João', 'nota': 8},
-        {'texto': 'Léo', 'nota': 7},
-        {'texto': 'Pedro', 'nota': 3},
+        {'texto': 'Maria', 'pontuacão': 9},
+        {'texto': 'João', 'pontuacão': 8},
+        {'texto': 'Léo', 'pontuacão': 7},
+        {'texto': 'Pedro', 'pontuacão': 3},
       ],
     },
   ];
@@ -52,12 +52,14 @@ class _PerguntaAppState extends State<PerguntaApp> {
     return _perguntaSelecionada < _perguntas.length;
   }
 
-  void responder() {
+  void responder(int pontuacao) {
     if (temPerguntaSelecionada) {
       setState(() {
         _perguntaSelecionada++;
+        _pontuacaoTotal += pontuacao;
       });
     }
+    print(_pontuacaoTotal);
   }
 
   @override
@@ -76,9 +78,10 @@ class _PerguntaAppState extends State<PerguntaApp> {
         home: Scaffold(
           appBar: AppBar(
             title: Text('Perguntas'),
-            titleTextStyle: TextStyle(),
+            titleTextStyle: TextStyle(
+                color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold),
           ),
-          body: ResultadoFinal(), // Exibe o resultado
+          body: ResultadoFinal(),
         ),
       );
     }
@@ -91,7 +94,8 @@ class _PerguntaAppState extends State<PerguntaApp> {
       home: Scaffold(
         appBar: AppBar(
           title: Text('Perguntas'),
-          titleTextStyle: TextStyle(),
+          titleTextStyle: TextStyle(
+              color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold),
         ),
         body: temPerguntaSelecionada
             ? Questionario(

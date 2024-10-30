@@ -5,7 +5,7 @@ import './respostas.dart';
 class Questionario extends StatelessWidget {
   final int perguntaSelecionada;
   final List<Map<String, Object>> perguntas;
-  final void Function() quantoResponder;
+  final void Function(int) quantoResponder;
 
   Questionario({
     required this.perguntas,
@@ -29,10 +29,16 @@ class Questionario extends StatelessWidget {
         Questao(perguntas[perguntaSelecionada]['texto'] as String),
         if (respostas != null)
           ...respostas.map((resp) {
-            final texto = resp['texto'] as String?;
+            final texto = resp['texto'] as String;
+            final pontuacao = (resp['pontuacao'] ?? 0) as int;
+            if (pontuacao == false) {
+              throw Exception(
+                  'Pontuação nao definida para a resposta: $texto]');
+            }
+
             return MeuBotao(
-              texto ?? 'Texto indisponível',
-              quantoResponder,
+              texto,
+              () => quantoResponder(pontuacao),
             );
           }).toList(),
       ],
