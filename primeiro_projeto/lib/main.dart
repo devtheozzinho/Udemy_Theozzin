@@ -23,28 +23,28 @@ class _PerguntaAppState extends State<PerguntaApp> {
     {
       'texto': 'Qual é a sua cor favorita?',
       'respostas': [
-        {'texto': 'preto', 'pontuacão': 10},
-        {'texto': 'vermelho', 'pontuacão': 5},
-        {'texto': 'verde', 'pontuacão': 3},
-        {'texto': 'branco', 'pontuacão': 7}
+        {'texto': 'preto', 'pontuacao': 10},
+        {'texto': 'vermelho', 'pontuacao': 5},
+        {'texto': 'verde', 'pontuacao': 3},
+        {'texto': 'branco', 'pontuacao': 7}
       ],
     },
     {
       'texto': 'Qual é o seu animal favorito?',
       'respostas': [
-        {'texto': 'coelho', 'pontuacão': 10},
-        {'texto': 'leão', 'pontuacão': 7},
-        {'texto': 'tubarão', 'pontuacão': 2},
-        {'texto': 'macaco', 'pontuacão': 4},
+        {'texto': 'coelho', 'pontuacao': 10},
+        {'texto': 'leão', 'pontuacao': 7},
+        {'texto': 'tubarão', 'pontuacao': 2},
+        {'texto': 'macaco', 'pontuacao': 4},
       ],
     },
     {
       'texto': 'Qual vai ser o seu instrutor favorito?',
       'respostas': [
-        {'texto': 'Maria', 'pontuacão': 9},
-        {'texto': 'João', 'pontuacão': 8},
-        {'texto': 'Léo', 'pontuacão': 7},
-        {'texto': 'Pedro', 'pontuacão': 3},
+        {'texto': 'Maria', 'pontuacao': 9},
+        {'texto': 'João', 'pontuacao': 8},
+        {'texto': 'Léo', 'pontuacao': 7},
+        {'texto': 'Pedro', 'pontuacao': 3},
       ],
     },
   ];
@@ -82,7 +82,7 @@ class _PerguntaAppState extends State<PerguntaApp> {
             titleTextStyle: TextStyle(
                 color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold),
           ),
-          body: ResultadoFinal(),
+          body: ResultadoFinal(_pontuacaoTotal),
         ),
       );
     }
@@ -104,7 +104,7 @@ class _PerguntaAppState extends State<PerguntaApp> {
                 perguntaSelecionada: _perguntaSelecionada,
                 quantoResponder: responder,
               )
-            : ResultadoFinal(),
+            : ResultadoFinal(_pontuacaoTotal),
       ),
     );
   }

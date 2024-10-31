@@ -31,9 +31,9 @@ class Questionario extends StatelessWidget {
           ...respostas.map((resp) {
             final texto = resp['texto'] as String;
             final pontuacao = (resp['pontuacao'] ?? 0) as int;
-            if (pontuacao == false) {
-              throw Exception(
-                  'Pontuação nao definida para a resposta: $texto]');
+            if (pontuacao == 0 && resp['pontuacao'] == null) {
+              // throw Exception(
+              //     'Pontuacão não definida para a resposta: [$texto]');
             }
 
             return MeuBotao(
