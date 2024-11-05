@@ -63,6 +63,13 @@ class _PerguntaAppState extends State<PerguntaApp> {
     print(_pontuacaoTotal);
   }
 
+  void _reiniciarQuestionario() {
+    setState(() {
+      _perguntaSelecionada = 0;
+      _pontuacaoTotal = 0;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final perguntaAtual =
@@ -82,7 +89,7 @@ class _PerguntaAppState extends State<PerguntaApp> {
             titleTextStyle: TextStyle(
                 color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold),
           ),
-          body: ResultadoFinal(_pontuacaoTotal),
+          body: ResultadoFinal(_pontuacaoTotal, _reiniciarQuestionario),
         ),
       );
     }
@@ -104,7 +111,7 @@ class _PerguntaAppState extends State<PerguntaApp> {
                 perguntaSelecionada: _perguntaSelecionada,
                 quantoResponder: responder,
               )
-            : ResultadoFinal(_pontuacaoTotal),
+            : ResultadoFinal(_pontuacaoTotal, _reiniciarQuestionario),
       ),
     );
   }
